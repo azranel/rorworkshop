@@ -1,0 +1,75 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+@import url(http://fonts.googleapis.com/css?family=Dosis:300);
+
+body {
+	padding-top: 60px;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background: #f2f5f6;
+	background: -moz-radial-gradient(center, ellipse cover,  #f2f5f6 0%, #e3eaed 37%, #c8d7dc 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#f2f5f6), color-stop(37%,#e3eaed), color-stop(100%,#c8d7dc));
+	background: -webkit-radial-gradient(center, ellipse cover,  #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%);
+	background: -o-radial-gradient(center, ellipse cover,  #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%);
+	background: -ms-radial-gradient(center, ellipse cover,  #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%);
+	background: radial-gradient(ellipse at center,  #f2f5f6 0%,#e3eaed 37%,#c8d7dc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f5f6', endColorstr='#c8d7dc',GradientType=1 );
+}
+
+.page-title {
+	font-family: 'Droid Serif', serif;
+}
+
+.page-header-text {
+	font-family: 'Dosis', sans-serif;
+}
+
+.no-font-style {
+	font-style: none;
+	&:hover {
+		font-style: none;
+		background-color: transparent;
+	}
+}
+
+.flash-msg {
+	margin-top: 30px;
+	width: 80%;
+  	height: 70px;
+  	line-height: 70px;
+  	text-align: center;
+  	border: 2px solid #a0a0a0;
+    border-radius: 25px;
+  &:span {
+  	display: inline-block;
+  	vertical-align: middle;
+  	line-height: normal; 
+  }
+}

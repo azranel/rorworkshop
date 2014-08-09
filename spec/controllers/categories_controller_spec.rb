@@ -9,7 +9,7 @@ describe CategoriesController do
   let(:user) { build(:user) }
 
   before do
-    sign_in user
+    sign_in :user, user
     controller.stub(:user_signed_in?).and_return(true)
     controller.stub(:current_user).and_return(user)
     controller.stub(:authenticate_user!).and_return(user)

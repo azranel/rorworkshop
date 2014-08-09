@@ -1,25 +1,27 @@
 %p#notice= notice
 %p#error= flash[:error]
+.container
+  .row
+    .col-md-8
+      %h1.page-header-text
+        %b= product.title
+      %h3=link_to product.category.name, product.category, class: "no-font-style"
+      %p
+        %b Description:
+        = product.description
+      %p
+        %b Price:
+        = product.price
+      %br
+      %p
+      %b Reviews
+      = render reviews
+    .col-md-4
+      %h3
+        %b Add review:
+      = render 'reviews/form'
 
-%p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
-%p
-  %b Price:
-  = product.price
 
-%p
-  %b Category
-  = product.category.name
-
-%p
-  %b Reviews
-  = render 'reviews/form'
-
-= render reviews
 
 = link_to 'Edit', edit_category_product_path(category.id, product.id)
 \|

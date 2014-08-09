@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe ProductsController do
 
-
+  let(:user) { build(:user) }
   let(:category) { create(:category) }
 
-  let(:valid_attributes) { { "title" => "MyString", "category_id" => category.id } }
+  let(:valid_attributes) { { "title" => "MyString", "category_id" => category.id, "description" => "Some great product!", "price" => 3.50, "user" => user } }
 
   let(:valid_session) { {} }
 
@@ -36,7 +36,7 @@ describe ProductsController do
     let(:product) { Product.create! valid_attributes }
 
     before do
-      sign_in user2
+      sign_in :user, user2
       controller.stub(:user_signed_in?).and_return(true)
       controller.stub(:current_user).and_return(user2)
       controller.stub(:authenticate_user!).and_return(user2)
@@ -80,7 +80,7 @@ describe ProductsController do
   describe "GET index" do
     it "expose all products" do
       product = Product.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, { category_id: category.to_param}, valid_session
       expect(controller.products).to eq([product])
     end
   end
@@ -109,7 +109,17 @@ describe ProductsController do
   end
 
   describe "POST create" do
+    let(:user) { build(:user) }
+
+    before do
+      sign_in :user, user
+      controller.stub(:user_signed_in?).and_return(true)
+      controller.stub(:current_user).and_return(user)
+      controller.stub(:authenticate_user!).and_return(user)
+    end
+
     describe "with valid params" do
+
       it "creates a new Product" do
         expect {
           post :create, { product: valid_attributes, category_id: category.to_param }, valid_session
@@ -145,6 +155,15 @@ describe ProductsController do
   end
 
   describe "PUT update" do
+    let(:user) { build(:user) }
+
+    before do
+      sign_in :user, user
+      controller.stub(:user_signed_in?).and_return(true)
+      controller.stub(:current_user).and_return(user)
+      controller.stub(:authenticate_user!).and_return(user)
+    end
+
     describe "with valid params" do
       it "updates the requested product" do
         product = Product.create! valid_attributes
@@ -173,7 +192,7 @@ describe ProductsController do
         expect(controller.product).to eq(product)
       end
 
-      it "re-renders the 'edit' template" do
+      it "re-renders the 'edit' templ ate" do
         product = Product.create! valid_attributes
         Product.any_instance.stub(:save).and_return(false)
         put :update, { id: product.to_param, product: { "title" => "invalid value" }, category_id: category.to_param }, valid_session
@@ -183,6 +202,14 @@ describe ProductsController do
   end
 
   describe "DELETE destroy" do
+    
+    let(:user) { build(:user) }
+
+    before do
+      sign_in :user, user
+      controller.stub(:current_user).and_return(user)
+    end
+
     it "destroys the requested product" do
       product = Product.create! valid_attributes
       expect {

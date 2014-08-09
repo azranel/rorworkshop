@@ -1,6 +1,7 @@
-%h1 Listing categories
 
-%table
+%h1.page-header-text Listing categories
+
+%table.table
   %tr
     %th Name
     %th
@@ -10,10 +11,12 @@
   - categories.each do |category|
     %tr
       %td= category.name
-      %td= link_to 'Show', category
-      %td= link_to 'Edit', edit_category_path(category)
-      %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+      %td= link_to 'Show', category, class: "no-font-style"
+      %td= link_to 'Edit', edit_category_path(category), class: "no-font-style"
+      %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "no-font-style"
 
 %br
 
-= link_to 'New Category', new_category_path
+
+%button.btn.btn-default
+  = link_to 'New Category', new_category_path, class: "no-font-style"

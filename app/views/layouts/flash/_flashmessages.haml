@@ -1,0 +1,8 @@
+.container
+  -flash.each do |name,msg|
+    -if name=="alert"
+      .center-block.bg-danger.flash-msg.text-center
+        %span=msg
+    -if name=="notice"
+      .center-block.bg-primary.flash-msg.text-center
+        %span=msg

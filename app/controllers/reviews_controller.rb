@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
 
   expose(:review)
   expose(:product)
@@ -8,6 +9,7 @@ class ReviewsController < ApplicationController
 
   def create
     self.review = Review.new(review_params)
+    self.review.user = current_user
 
     if review.save
       product.reviews << review

@@ -1,0 +1,21 @@
+.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      =link_to("Shop-alike", root_path, class: "navbar-brand page-title")
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{href: "#"} Home
+        %li
+          =link_to "Contact", contact_path 
+        -if user_signed_in?
+          %li
+            =link_to("Logout", destroy_user_session_path, :method => :delete)
+        -else
+          %li
+            =link_to("Sign/Login", new_user_session_path)
